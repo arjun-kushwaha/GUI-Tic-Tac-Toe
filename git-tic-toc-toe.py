@@ -11,11 +11,27 @@ root.title('TicTocToe Developed By Arjun Kushwaha')
 root.wm_iconbitmap('tic.ico')
 
 def restart():
-    pass
+    global count, button_color
+    count=2 # it icrease at every click as even 0 and odd x
+
+    # initializing empty button
+    b1['text']=b2['text']=b3['text']=b4['text']=b5['text']=b6['text']=b7['text']=b8['text']=b9['text']=''
+    
+    #changing all button color as new game
+    b1.configure(background=button_color)
+    b2.configure(background=button_color)
+    b3.configure(background=button_color)
+    b4.configure(background=button_color)
+    b5.configure(background=button_color)
+    b6.configure(background=button_color)
+    b7.configure(background=button_color)
+    b8.configure(background=button_color)
+    b9.configure(background=button_color)
+
 
 # checking winning condition 
 def win_func():
-    global win_color
+    global win_color,count 
        #checking horizantol vertical and diagonal whether is same symbol or not  
     if (b1['text'] == 'O' and  b2['text'] == 'O' and  b3['text'] == 'O'):
 
@@ -140,6 +156,21 @@ def win_func():
         b7.configure(background=win_color)
         msg.showinfo('Winner','Player 2 winner !! ')
         restart()
+        #if x values is 11 means all button is filled and above no condition is satisfied then Draw
+    else:
+        if count==11:
+            b1.configure(background='#062c8c')
+            b2.configure(background='#062c8c')
+            b3.configure(background='#062c8c')
+            b4.configure(background='#062c8c')
+            b5.configure(background='#062c8c')
+            b6.configure(background='#062c8c')
+            b7.configure(background='#062c8c')
+            b8.configure(background='#062c8c')
+            b9.configure(background='#062c8c')
+            msg.showinfo("Draw"," Game Draw !! ")
+            restart()
+            
 
 
 
@@ -156,6 +187,12 @@ def getval(button):
             count += 1
     win_func()
 
+# button color 
+button_color = '#072a40'
+win_color = '#07f3fb'
+fg_color = 'white'
+count = 2
+
 # Specify Grid to fit window 
 Grid.rowconfigure(root,0,weight=1)
 Grid.rowconfigure(root,1,weight=1)
@@ -163,12 +200,6 @@ Grid.rowconfigure(root,2,weight=1)
 Grid.columnconfigure(root,0,weight=1)
 Grid.columnconfigure(root,1,weight=1)
 Grid.columnconfigure(root,2,weight=1)
-
-# button color 
-button_color = '#072a40'
-win_color = '#07f3fb'
-fg_color = 'white'
-count = 2
 
 # creating 3x3 buttons 
 b1 = Button(root,text='',bg=button_color, command=lambda:getval(b1),fg=fg_color,font='Arial 35 bold',width=7,height=3)
