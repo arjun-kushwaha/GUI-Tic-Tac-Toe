@@ -187,9 +187,15 @@ def getval(button):
             count += 1
     win_func()
 
+# changing buttons color 
+def color_func(col):
+    global button_color
+    button_color = col
+    restart()
+
 # button color 
 button_color = '#072a40'
-win_color = '#07f3fb'
+win_color = '#19ea13'
 fg_color = 'white'
 count = 2
 
@@ -228,6 +234,15 @@ b8.grid(row=2,column=1,sticky=NSEW)
 
 b9 = Button(root,text='',bg=button_color,command=lambda:getval(b9),fg=fg_color,font='Arial 35 bold',width=7,height=3)
 b9.grid(row=2,column=2,sticky=NSEW)
+
+color = Button(root,text='  ',bg='#e59e5b',command=lambda:color_func('#e59e5b'))
+color.grid(row=3,column=0,sticky=NSEW)
+
+color2 = Button(root,text='  ',bg='#072a40',command=lambda:color_func('#072a40'))
+color2.grid(row=3,column=1,sticky=NSEW)
+
+color3 = Button(root,text='  ',bg='#3e2a12',command=lambda:color_func('#3e2a12'))
+color3.grid(row=3,column=2,sticky=NSEW)
 
 
 
